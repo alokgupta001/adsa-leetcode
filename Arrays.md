@@ -30,6 +30,8 @@
 
 15.Find the Number of Ways to Place People I:- https://leetcode.com/submissions/detail/1756663981/
 
-16.
+16.Find the Number of Ways to Place People II:-  https://leetcode.com/submissions/detail/1758365921/
+
+17.
 
 
