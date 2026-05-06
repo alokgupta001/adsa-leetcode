@@ -23,10 +23,10 @@ class Solution {
         Pair left = solve(root.left);
         Pair right = solve(root.right);
         if (!left.isBST || !right.isBST) {
-            return new Pair(false, 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            return new Pair(false, 0, 0, 0);
         }
         if (root.val <= left.max || root.val >= right.min) {
-            return new Pair(false, 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            return new Pair(false, 0, 0, 0);
         }
         int currentSum = root.val + left.sum + right.sum;
         maxSum = Math.max(maxSum, currentSum);
