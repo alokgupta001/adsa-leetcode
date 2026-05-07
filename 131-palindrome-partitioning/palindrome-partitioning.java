@@ -11,20 +11,17 @@ class Solution {
         return res;
 
     }
-    void helper(int idx,String s,List<String> temp){
-        if(idx>=s.length()){
-            int cnt = 0;
-            for(String t : temp) cnt+=t.length();
-            if(cnt==s.length())res.add(new ArrayList<>(temp));
+    void helper(int start,String s,List<String> temp){
+        if(start == s.length()){
+            res.add(new ArrayList<>(temp));
             return;
         }
-        for(int i=idx;i<s.length();i++){
-            for(int j=i;j<s.length();j++){
-                if(dp[i][j]!=null && dp[i][j]==true){
-                    temp.add(s.substring(i,j+1));
-                    helper(j+1,s,temp);
-                    temp.remove(temp.size()-1);
-                }
+        for(int i=start;i<s.length();i++){
+            String part=s.substring(start,i+1);
+            if(dp[start][i]!=null && dp[start][i]==true){
+                temp.add(part);
+                helper(i+1,s,temp);
+                temp.remove(temp.size()-1);
             }
         }
     }
