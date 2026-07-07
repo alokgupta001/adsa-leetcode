@@ -11,11 +11,15 @@ class Solution {
             }
             n=n/10;
         }
-        ans = Long.parseLong(reverse(Long.toString(ans)));
-        return ans*sum;
+        long num=0;
+        while(ans!=0){
+            num=num*10+ans%10;
+            ans/=10;
+        }
+        return num*sum;
     }
-    String reverse(String s){
-        StringBuilder sb = new StringBuilder(s);
-        return sb.reverse().toString();
-    }
+    // String reverse(String s){
+    //     StringBuilder sb = new StringBuilder(s);
+    //     return sb.reverse().toString();
+    // }
 }
