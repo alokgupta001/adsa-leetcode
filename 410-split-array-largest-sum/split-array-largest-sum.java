@@ -30,7 +30,6 @@ class Solution {
             }
             if(cnt>k) return false;
         }
-        if(cnt>k) return false;
         return true;
         
     }
