@@ -1,49 +1,46 @@
 class Solution {
-    int m,n;
+    int component;
     public int findCircleNum(int[][] isConnected) {
-        //m = isConnected.length;
-        n = isConnected.length;
-        
-        int cnt=0;
-        List<List<Integer>> adj = new ArrayList<>();
-        for(int i=0;i<n;i++){
-            adj.add(new ArrayList<>());
+        int n = isConnected.length;
+        int [] parent = new int[n];
+        component =n;
+        for(int i=0;i<parent.length;i++){
+            parent[i]=i;
         }
+        int [] rank = new int[n];
+        List<int[]> edges =new ArrayList<>();
         for(int i=0;i<n;i++){
-            for(int j =0;j<n;j++){
-                if(isConnected[i][j]==1){
-                    adj.get(i).add(j);
-                    adj.get(j).add(i);
-                }
+            for(int j=0;j<n;j++){
+                if(i==j) continue;
+                if(isConnected[i][j]==1) edges.add(new int[]{i,j});
             }
         }
-        int [] vis = new int [n];
-        for(int i=0;i<n;i++){
-            if(vis[i]==0){
-                bfs(i,adj,vis);
-                cnt++;
-            }
+        for(int [] edge : edges){
+            int x = edge[0];
+            int y = edge[1];
+            unionRank(x,y,parent,rank);
         }
-        return cnt;
+        return component;
     }
-   
-    int bfs(int i,List<List<Integer>> adj,int [] vis){
-        vis[i]=1;
-        Queue <Integer> q = new LinkedList<>();
-        q.offer(i);
-        int cities =0;
-        while(!q.isEmpty()){
-            int node = q.poll();
-            
-            for(int a:adj.get(node)){
-                if(vis[a]==0){
-                    cities++;
-                    vis[a]=1;
-                    q.offer(a);
-                }
-            }
+    boolean unionRank(int x,int y,int []parent,int [] rank){
+        int a = findParent(x,parent);
+        int b = findParent(y,parent);
+        if(a==b){
+            return false;
         }
-        return cities;
+        if(rank[a]<rank[b]){
+            parent[a] = b;
+        }else if(rank[a]>rank[b]){
+            parent[b]=a;
+        }else{
+            parent[a]=b;
+            rank[b]++;
+        }
+        component--;
+        return true;
     }
-
+    int findParent(int x,int[]parent){
+        if(parent[x]==x) return x;
+        return parent[x] = findParent(parent[x],parent);
+    }
 }
