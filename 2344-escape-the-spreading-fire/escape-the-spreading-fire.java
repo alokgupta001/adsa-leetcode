@@ -35,7 +35,7 @@ class Solution {
             }
         }
         q.clear();
-        if(canReach(grid,dist)) return INF-1;
+        //if(canReach(grid,dist)) return INF-1;
         int stayedL=0;
         int stayedR = dist[m-1][n-1];
         int ans = -1;
@@ -85,38 +85,38 @@ class Solution {
         if(INF-1-ans<=m*n) return INF-1;
         return ans;
     }
-    boolean canReach(int[][] grid,int [][]dist){
-        boolean [][]vis= new boolean[m][n];
-        boolean reached = false;
-        vis[0][0]=true;
-        Queue<int[]> q = new LinkedList<>();
-        q.offer(new int[]{0,0,INF-1});
-        while(!q.isEmpty()){
-            int row= q.peek()[0];
-            int col = q.peek()[1];
-            int d = q.peek()[2];
-            q.poll();
-            if(row==m-1 && col == n-1){
-                reached =true;
-                q.clear();
-                break;
-            }
-            for(int k=0;k<4;k++){
-                int nrow = row+dir_r[k];
-                int ncol = col+dir_c[k];
-                int nd = d+1;
-                if(nrow>=0 && nrow<m && ncol>=0 && ncol<n && grid[nrow][ncol]!=2  && !vis[nrow][ncol]){
-                    if(nrow==m-1 && ncol==n-1&& nd<=dist[nrow][ncol]){
-                        q.offer(new int[]{nrow,ncol,nd});
-                    }
-                    else if(nd<dist[nrow][ncol]){
-                        q.offer(new int[]{nrow,ncol,nd});
-                    }
-                    vis[nrow][ncol]=true;
-                }
-            }
-        }
-        return reached;
+    // boolean canReach(int[][] grid,int [][]dist){
+    //     boolean [][]vis= new boolean[m][n];
+    //     boolean reached = false;
+    //     vis[0][0]=true;
+    //     Queue<int[]> q = new LinkedList<>();
+    //     q.offer(new int[]{0,0,INF-1});
+    //     while(!q.isEmpty()){
+    //         int row= q.peek()[0];
+    //         int col = q.peek()[1];
+    //         int d = q.peek()[2];
+    //         q.poll();
+    //         if(row==m-1 && col == n-1){
+    //             reached =true;
+    //             q.clear();
+    //             break;
+    //         }
+    //         for(int k=0;k<4;k++){
+    //             int nrow = row+dir_r[k];
+    //             int ncol = col+dir_c[k];
+    //             int nd = d+1;
+    //             if(nrow>=0 && nrow<m && ncol>=0 && ncol<n && grid[nrow][ncol]!=2  && !vis[nrow][ncol]){
+    //                 if(nrow==m-1 && ncol==n-1&& nd<=dist[nrow][ncol]){
+    //                     q.offer(new int[]{nrow,ncol,nd});
+    //                 }
+    //                 else if(nd<dist[nrow][ncol]){
+    //                     q.offer(new int[]{nrow,ncol,nd});
+    //                 }
+    //                 vis[nrow][ncol]=true;
+    //             }
+    //         }
+    //     }
+    //     return reached;
 
-    }
+    // }
 }
