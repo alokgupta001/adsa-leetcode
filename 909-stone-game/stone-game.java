@@ -1,8 +1,9 @@
 class Solution {
     Integer [][] dp;
     public boolean stoneGame(int[] piles) {
-        dp = new Integer[piles.length][piles.length];
-        return helper(piles,0,piles.length-1)>=0;
+        // dp = new Integer[piles.length][piles.length];
+        // return helper(piles,0,piles.length-1)>=0;
+        return true;
     }
     int helper(int[]nums,int i,int j){
         if(i==j){
